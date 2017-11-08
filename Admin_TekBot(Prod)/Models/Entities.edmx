@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BotKnowledgeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Engineer_name" Type="varchar" MaxLength="100" />
+          <Property Name="Team" Type="varchar" MaxLength="100" />
+          <Property Name="Case_number" Type="varchar" MaxLength="100" />
+          <Property Name="Case_type" Type="varchar" MaxLength="50" />
+          <Property Name="Case_Status" Type="varchar" MaxLength="100" />
+          <Property Name="Case_severity" Type="varchar" MaxLength="1" />
+          <Property Name="Full_Date" Type="varchar" MaxLength="100" />
+          <Property Name="Day_Number" Type="int" />
+          <Property Name="Month_Number" Type="int" />
+          <Property Name="Week_Year" Type="int" />
+          <Property Name="Year_Number" Type="int" />
+          <Property Name="Day_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Month_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Comments" Type="varchar" MaxLength="300" />
+          <Property Name="AssignedBy" Type="varchar" MaxLength="100" />
+          <Property Name="Full_Date_Close" Type="varchar" MaxLength="100" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Close_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="mail" />
+          </Key>
+          <Property Name="mail" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="TeamId" Type="int" />
+          <Property Name="Last_Review" Type="date" />
+          <Property Name="Users_Status" Type="varchar" MaxLength="25" />
+          <Property Name="Users_positions" Type="varchar" MaxLength="25" />
+          <Property Name="Users_vacations" Type="int" />
+          <Property Name="User_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Users__TeamId__1F98B2C1">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BotKnowledgeDBModelStoreContainer">
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Users__TeamId__1F98B2C1" Association="Self.FK__Users__TeamId__1F98B2C1">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BotKnowledgeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Engineer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Team" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Case_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Case_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Case_Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Case_severity" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Full_Date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Day_Number" Type="Int32" />
+          <Property Name="Month_Number" Type="Int32" />
+          <Property Name="Week_Year" Type="Int32" />
+          <Property Name="Year_Number" Type="Int32" />
+          <Property Name="Day_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Month_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="AssignedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Full_Date_Close" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Close_Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__TeamId__1F98B2C1" FromRole="Teams" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="mail" />
+          </Key>
+          <Property Name="mail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TeamId" Type="Int32" />
+          <Property Name="Last_Review" Type="DateTime" Precision="0" />
+          <Property Name="Users_Status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Users_positions" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Users_vacations" Type="Int32" />
+          <Property Name="User_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Team" Relationship="Self.FK__Users__TeamId__1F98B2C1" FromRole="Users" ToRole="Teams" />
+        </EntityType>
+        <Association Name="FK__Users__TeamId__1F98B2C1">
+          <End Role="Teams" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BotKnowledgeDB_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Users__TeamId__1F98B2C1" Association="Self.FK__Users__TeamId__1F98B2C1">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BotKnowledgeDBModelStoreContainer" CdmEntityContainer="BotKnowledgeDB_Entities">
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="BotKnowledgeDBModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="Engineer_name" ColumnName="Engineer_name" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Case_number" ColumnName="Case_number" />
+                <ScalarProperty Name="Case_type" ColumnName="Case_type" />
+                <ScalarProperty Name="Case_Status" ColumnName="Case_Status" />
+                <ScalarProperty Name="Case_severity" ColumnName="Case_severity" />
+                <ScalarProperty Name="Full_Date" ColumnName="Full_Date" />
+                <ScalarProperty Name="Day_Number" ColumnName="Day_Number" />
+                <ScalarProperty Name="Month_Number" ColumnName="Month_Number" />
+                <ScalarProperty Name="Week_Year" ColumnName="Week_Year" />
+                <ScalarProperty Name="Year_Number" ColumnName="Year_Number" />
+                <ScalarProperty Name="Day_Name" ColumnName="Day_Name" />
+                <ScalarProperty Name="Month_Name" ColumnName="Month_Name" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="AssignedBy" ColumnName="AssignedBy" />
+                <ScalarProperty Name="Full_Date_Close" ColumnName="Full_Date_Close" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Close_Date" ColumnName="Close_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="BotKnowledgeDBModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BotKnowledgeDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Last_Review" ColumnName="Last_Review" />
+                <ScalarProperty Name="Users_Status" ColumnName="Users_Status" />
+                <ScalarProperty Name="Users_positions" ColumnName="Users_positions" />
+                <ScalarProperty Name="Users_vacations" ColumnName="Users_vacations" />
+                <ScalarProperty Name="User_Number" ColumnName="User_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
