@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Admin_TekBot_Prod_.Models.Case>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Engineer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Case_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Case_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Case_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Case_severity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Full_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Week_Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Full_Date_Close)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Create_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Close_Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Engineer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Case_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Case_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Case_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Case_severity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Full_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Week_Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Full_Date_Close)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Create_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Close_Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CaseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CaseId })
+        </td>
+    </tr>
+}
+
+</table>
