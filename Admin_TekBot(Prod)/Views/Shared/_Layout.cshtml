@@ -3,41 +3,124 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - HR-Manager</title>
+    @Styles.Render("~/Content/EstiloPrincipal.css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @*librerias de alertify*@
+    <script type="text/javascript" src="~/Scripts/alertify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/alertify.core.css" />
+    <link rel="stylesheet" href="~/Content/alertify.default.css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Admin Tek-Bot", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Admin-Tekbot (Tek-Experts)</p>
-        </footer>
-    </div>
+            <header>
+                <span class="Home"></span>
+                <h1>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "h1Letra" })</h1>
+                <h2>Bienvenido(a): NOMBRE_USUARIO</h2>
+                <a class='boton' id="BotonConexus" onclick="return MostrarCuadroLogin()"></a>
+                <div id="triangulo"></div>
+                <div id="rectangulo">
+                    <div id="conexus"></div>
+                    <a id="usuario" href="">Esteban</a>
+                </div>
+                <div id="rectanguloBotones">
+                    <input id="cerrarSession" type="button" value="Cerrar Session" onclick="location.href='@Url.Action("CerrarSession", "Login")'" class="buttonLogin" />
+                </div>
+            </header>
+            <aside>
+                <table>
 
+                        <tr class="TrOpciones">
+                            <td class="Seleccion"></td>
+                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Users")'"><spam class="Icono" id="Usuarios"></spam> Users</td>
+                        </tr>
+                 
+                        <tr class="TrOpciones">
+                            <td class="Seleccion"></td>
+                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Teams")'"><spam class="Icono" id="Departamentos"></spam>Teams</td>
+                        </tr>
+                  
+                        <tr class="TrOpciones">
+                            <td class="Seleccion"></td>
+                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Cases")'"><spam class="Icono" id="Reportes"></spam> Cases</td>
+                        </tr>
+                    
+                </table>
+
+                <img src="~/Imagenes/conexus3.png">
+            </aside>
+        </div>
+        <section class="scrollVertical">
+            <article>
+                @RenderBody()
+                <footer>
+                    @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+                </footer>
+            </article>
+        </section>
+    }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @if (TempData["Error"] != null)
+    {
+        string alert = "Your custom error message";
+        alert = TempData["Error"].ToString();
+        <script type="text/javascript">
+            alertify.error('@alert');
+        </script>
+    }
+    @if (TempData["Success"] != null)
+    {
+        string alert = "Your custom error message";
+        alert = TempData["Success"].ToString();
+        <script type="text/javascript">
+            alertify.success('@alert');
+        </script>
+    }
+    <script>
+        function Confirmar(mensaje, boton) {
+            alertify.set({
+                labels: {
+                    ok: "Aceptar",
+                    cancel: "Cancelar"
+                }
+            });
+            alertify.confirm("" + mensaje, function (e) {
+                if (e) {
+                    $('#' + boton).click()
+                }
+                else {
+                    alertify.error('Se ha cancelado la accion')
+                }
+            });
+            return false;
+        }
+    </script>
+
+    <script>
+        function MostrarCuadroLogin() {
+
+            $('#triangulo').css('display', 'initial');
+            $('#rectangulo').css('display', 'initial');
+            $('#rectanguloBotones').css('display', 'initial');
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).click(function (e) {
+                if (e.target.id != 'BotonConexus' && e.target.id != 'cerrarSession') {
+                    $('#triangulo').hide();
+                    $('#rectangulo').hide();
+                    $('#rectanguloBotones').hide();
+                }
+            });
+
+        });
+
+    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 ﻿header{
    width: 100%;
    height: 10%;
-   background:  #B40404;
+   background:  #089dd8;
    position: absolute;
    top: 0%; 
    left: 0%;
@@ -167,31 +167,31 @@ h1{
 }
 
 #Departamentos{
-    background: url("/Imagenes/departamentos.png") no-repeat;
+    background: url("/Images/departamentos.png") no-repeat;
 }
 
 #Empresas{
-    background: url("/Imagenes/empresas.png") no-repeat;
+    background: url("/Images/empresas.png") no-repeat;
 }
 
 #Personal{
-    background: url("/Imagenes/personal.png") no-repeat;
+    background: url("/Images/personal.png") no-repeat;
 }
 
 #Puestos{ 
-    background: url("/Imagenes/puestos.png") no-repeat;
+    background: url("/Images/puestos.png") no-repeat;
 }
 
 #Acciones{ 
-    background: url("/Imagenes/acciones.png") no-repeat;
+    background: url("/Images/acciones.png") no-repeat;
 }
 
 #Reportes{ 
-    background: url("/Imagenes/reportes.png") no-repeat;
+    background: url("/Images/reportes.png") no-repeat;
 }
 
 #Usuarios{ 
-    background: url("/Imagenes/usuarios.png") no-repeat;
+    background: url("/Images/usuarios.png") no-repeat;
 }
 
 img {

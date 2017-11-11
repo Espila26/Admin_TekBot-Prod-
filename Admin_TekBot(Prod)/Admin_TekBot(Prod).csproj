@@ -229,9 +229,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\acciones.png" />
+    <Content Include="Images\conexus.png" />
+    <Content Include="Images\conexus1.png" />
+    <Content Include="Images\conexus3.png" />
+    <Content Include="Images\departamentos.png" />
+    <Content Include="Images\empresas.png" />
+    <Content Include="Images\flecha.png" />
+    <Content Include="Images\home.png" />
     <Content Include="Images\Home\cases.jpg" />
     <Content Include="Images\Home\team.png" />
     <Content Include="Images\Home\Users.png" />
+    <Content Include="Images\personal.png" />
+    <Content Include="Images\puestos.png" />
+    <Content Include="Images\reportes.png" />
+    <Content Include="Images\usuarios.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>
