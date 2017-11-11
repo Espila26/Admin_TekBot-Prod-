@@ -1,0 +1,97 @@
+﻿/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    display:inline-block;
+}
+ 
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+
+}
+ 
+.tab-links li {
+    margin:0px 5px;
+    float:left;
+    list-style:none;
+}
+ 
+.tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-radius:3px 3px 0px 0px;
+    background:#B40404;
+    font-size:12px;
+    font-weight:600;
+    color:#fff;
+    transition:all linear 0.15s;
+}
+
+.tab-links a:hover {
+    background:#FF7373;
+    text-decoration:none;
+}
+ 
+li.active a, li.active a:hover {
+    background:#D0D0D0;
+    color:#4c4c4c;
+}
+ 
+/*----- Content of Tabs -----*/
+.tab-content{
+    padding:15px;
+    border-radius:3px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
+    border-color:#B40404;
+}
+ 
+.tab{
+    display:none;
+    border-color:#B40404;
+}
+ 
+.active{
+    display:block;
+   background:#D0D0D0;
+    color:#4c4c4c;
+}
+
+#lettertext {
+    font-family:sans-serif;
+}
+
+.divBuscar{
+    width: 100%;
+    height: 40%;
+    float: left;
+}
+
+.pNombre{
+    float:left;
+    font-weight:bold;
+    font-family:sans-serif;
+    font-size:16px;
+    position:absolute;
+    top:15.5%;
+}
+
+.textInput{
+    padding-left: 6px;
+    height: 5%;
+    width: 30%;
+    position:absolute;
+    left: 8%;
+    top: 14%;
+    border: #9998A1 3px solid;
+    border-radius: 5px;
+}
+
+#Buscar{
+    position:absolute;
+    left: 40%;
+    top: 15%;
+}

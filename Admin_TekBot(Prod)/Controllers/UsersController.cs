@@ -15,10 +15,45 @@ namespace Admin_TekBot_Prod_.Controllers
         private BotKnowledgeDB_Entities db = new BotKnowledgeDB_Entities();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var users = db.Users.Include(u => u.Team);
-            return View(users.ToList());
+            var users = from e in db.Users select e;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //Muestra los empleados por el estado que el usuario definió previamente
+                if (searchString.Equals("Inactive") || searchString.Equals("Active"))
+                {
+                    users = users.Where(s => s.Users_Status.Equals(searchString));
+                }
+
+                else if (searchString.Equals("All"))
+                {
+                    users = users.Where(s => s.Users_Status.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Select"))
+                {
+                    TempData["Error"] = "Please Select the State!";
+                    return RedirectToAction("Index");
+                }
+
+                //Muestra los empleados que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
+                else
+                {
+                    users = users.Where(s => s.UserName.Contains(searchString) || s.Users_positions.Contains(searchString));
+                }
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
+                if (users.Count() == 0)
+                {
+                    TempData["Error"] = "No Results!";
+                    return RedirectToAction("Index");
+
+                }
+
+            }
+
+            return View(users);
         }
 
         // GET: Users/Details/5
@@ -136,6 +171,68 @@ namespace Admin_TekBot_Prod_.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "Please Select an User!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Details"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "Users", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an user!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Edit"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "Users", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an user!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Inactive"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Inactive";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been disable!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Active"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Active";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been enable!";
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
         }
     }
 }

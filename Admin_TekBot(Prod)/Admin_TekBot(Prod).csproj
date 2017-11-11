@@ -208,12 +208,29 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\alertify.bootstrap.css" />
+    <Content Include="Content\alertify.core.css" />
+    <Content Include="Content\alertify.default.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\EstiloBoton.css" />
+    <Content Include="Content\EstiloDetails.css" />
+    <Content Include="Content\EstiloEmpleados.css" />
+    <Content Include="Content\EstiloExpediente.css" />
+    <Content Include="Content\EstiloFormulario.css" />
+    <Content Include="Content\EstiloFormularioASP.css" />
+    <Content Include="Content\EstiloLogin.css" />
+    <Content Include="Content\EstiloMantenimiento.css" />
+    <Content Include="Content\EstiloPrincipal.css" />
+    <Content Include="Content\EstiloReporte.css" />
+    <Content Include="Content\EstiloTabla.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Home\cases.jpg" />
+    <Content Include="Images\Home\team.png" />
+    <Content Include="Images\Home\Users.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>
@@ -224,6 +241,8 @@
       <DependentUpon>Entities.edmx</DependentUpon>
       <LastGenOutput>Entities.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\alertify.js" />
+    <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Entities.edmx">
@@ -292,7 +311,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
