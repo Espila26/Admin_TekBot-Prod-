@@ -230,9 +230,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\acciones.png" />
-    <Content Include="Images\conexus.png" />
-    <Content Include="Images\conexus1.png" />
-    <Content Include="Images\conexus3.png" />
     <Content Include="Images\departamentos.png" />
     <Content Include="Images\empresas.png" />
     <Content Include="Images\flecha.png" />
