@@ -11,9 +11,7 @@ namespace Admin_TekBot_Prod_.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +21,6 @@ namespace Admin_TekBot_Prod_.Models
         }
     
         public int TeamId { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Team Name"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string TeamName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

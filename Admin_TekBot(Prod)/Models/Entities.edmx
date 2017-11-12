@@ -48,6 +48,9 @@
           <Property Name="Users_positions" Type="varchar" MaxLength="25" />
           <Property Name="Users_vacations" Type="int" />
           <Property Name="User_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QAUser_type" Type="int" />
+          <Property Name="Users_Role" Type="int" />
+          <Property Name="User_Password" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Users__TeamId__1F98B2C1">
           <End Role="Teams" Type="Self.Teams" Multiplicity="0..1" />
@@ -119,6 +122,9 @@
           <Property Name="Users_vacations" Type="Int32" />
           <Property Name="User_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Team" Relationship="Self.FK__Users__TeamId__1F98B2C1" FromRole="Users" ToRole="Teams" />
+          <Property Name="QAUser_type" Type="Int32" />
+          <Property Name="Users_Role" Type="Int32" />
+          <Property Name="User_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Users__TeamId__1F98B2C1">
           <End Role="Teams" Type="Self.Team" Multiplicity="0..1" />
@@ -183,6 +189,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BotKnowledgeDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+                <ScalarProperty Name="Users_Role" ColumnName="Users_Role" />
+                <ScalarProperty Name="QAUser_type" ColumnName="QAUser_type" />
                 <ScalarProperty Name="mail" ColumnName="mail" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />

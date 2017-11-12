@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a0c4bd0659644011b63d04e1c401c89c" Name="Diagram1">
         <EntityTypeShape EntityType="BotKnowledgeDBModel.Case" Width="1.5" PointX="8.625" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BotKnowledgeDBModel.Team" Width="1.5" PointX="3.375" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BotKnowledgeDBModel.Team" Width="1.5" PointX="2.875" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BotKnowledgeDBModel.User" Width="1.5" PointX="5.625" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="BotKnowledgeDBModel.FK__Users__TeamId__1F98B2C1" ManuallyRouted="false" />
       </Diagram>
