@@ -28,9 +28,25 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User_Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.TeamId, "TeamId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TeamId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Teams", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,24 +62,20 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Users_positions, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Status", new SelectList(new List<Object> { { "Manager" }, { "Support Engineer" }, { "QM/Support Engineer" } }), "Please select a position", new { @class = "form-control" })
+                @Html.DropDownList("Positions", new SelectList(new List<Object> { { "Manager" }, { "Support Engineer" }, { "QM/Support Engineer" } }), "Please select a position", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Users_Status, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="myButton" onClick="return Confirmar('¿Esta Seguro(a) de que desea modificar la información de esta empresa?', 'guardar');" />
-                <input id="guardar" class="btnInvisible" type="submit" value="Guardar" />
-                <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPRESAS")'" />
+            <div>
+                <input type="submit" value="Save" class="myButton" onClick="return Confirmar('Woudl you like to save the changes?', 'Save');" />
+                <input id="guardar" class="btnInvisible" type="submit" value="Save" />
+                <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "Users")'" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

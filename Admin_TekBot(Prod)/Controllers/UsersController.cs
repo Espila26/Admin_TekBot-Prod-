@@ -87,7 +87,7 @@ namespace Admin_TekBot_Prod_.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mail,UserName,TeamId,Last_Review,Users_Status,Users_positions,Users_vacations,User_Number")] User user)
+        public ActionResult Create([Bind(Include = "mail,UserName,TeamId,Last_Review,Users_Status,Users_positions,Users_vacations,User_Number,User_Password")] User user)
         {
             if (ModelState.IsValid)
             {

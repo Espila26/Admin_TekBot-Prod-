@@ -11,21 +11,28 @@ namespace Admin_TekBot_Prod_.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select a Team"), DisplayName("User Email"), EmailAddress(ErrorMessage = "Invalid Format.")]
         public string mail { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("User Name"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string UserName { get; set; }
         public Nullable<int> TeamId { get; set; }
         public Nullable<System.DateTime> Last_Review { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select a Status"), DisplayName("Status")]
         public string Users_Status { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select a Position"), DisplayName("Position")]
         public string Users_positions { get; set; }
+        [DisplayName("Vacations"), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Invalid Format (Please type just number)")]
         public Nullable<int> Users_vacations { get; set; }
         public int User_Number { get; set; }
         public Nullable<int> QAUser_type { get; set; }
         public Nullable<int> Users_Role { get; set; }
+        [DisplayName("Password"), StringLength(50, ErrorMessage = "The string is too long.")]
         public string User_Password { get; set; }
-    
         public virtual Team Team { get; set; }
     }
 }

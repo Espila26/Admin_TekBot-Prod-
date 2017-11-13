@@ -147,5 +147,68 @@ namespace Admin_TekBot_Prod_.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "Please Select an Team!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Details"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "Teams", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an team!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Edit"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "Teams", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an user!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Inactive"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Inactive";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been disable!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Active"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Active";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been enable!";
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+        }
+
     }
 }
