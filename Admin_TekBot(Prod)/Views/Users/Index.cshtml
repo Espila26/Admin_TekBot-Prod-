@@ -33,12 +33,12 @@
         <div class="form-group">
             <label class="pNombre">Nombre</label>
             <div class="col-md-10">
-                <input type="text" name="searchString" class="textInput" placeholder="Nombre de la Empresa" />
+                <input type="text" name="searchString" class="textInput" placeholder="Search By: " />
             </div>
 
             @*Campo donde el usuario selecciona el estado por el que se van a mostrar las empresas*@
             <div class="form-group">
-                <label class="pMostrar">Mostrar Por:</label>
+                <label class="pMostrar">Filter by:</label>
                 <div class="">
                     @Html.DropDownList("searchString", new SelectList(new List<Object> { { "Select" }, { "Active" }, { "Inactive" }, { "All" } }), new { onchange = "document.location.href = '/Users/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
                 </div>
@@ -148,11 +148,11 @@
               columns: grid.Columns(
               grid.Column(
               format: @<text>
-                    <input type="checkbox" value="@item.mail" name="childChkbox" />
+                    <input type="checkbox" value="@item.User_Number" name="childChkbox" />
             </text>,
               header: ""),
-              grid.Column("UserName", "Nombre de la Empresa", canSort: true),
-              grid.Column("mail", "Razón Social", canSort: false)
+              grid.Column("UserName", "User Name", canSort: true),
+              grid.Column("mail", "User Mail", canSort: false)
               //grid.Column("Teams.TeamName", "Team", canSort: false)
                     ))
         <div id="pager">

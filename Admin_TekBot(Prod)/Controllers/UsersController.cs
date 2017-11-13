@@ -33,7 +33,7 @@ namespace Admin_TekBot_Prod_.Controllers
 
                 else if (searchString.Equals("Select"))
                 {
-                    TempData["Error"] = "Please Select the State!";
+                    TempData["Error"] = "Please Select the Filter!";
                     return RedirectToAction("Index");
                 }
 
