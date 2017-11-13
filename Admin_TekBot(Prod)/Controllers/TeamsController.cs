@@ -15,9 +15,33 @@ namespace Admin_TekBot_Prod_.Controllers
         private BotKnowledgeDB_Entities db = new BotKnowledgeDB_Entities();
 
         // GET: Teams
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Teams.ToList());
+            var teams = from e in db.Teams select e;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //Muestra los empleados por el estado que el usuario definió previamente
+                if (searchString.Equals("Inactive") || searchString.Equals("Active"))
+                {
+                    teams = teams.Where(s => s.TeamName.Equals(searchString));
+                }
+
+                //Muestra los empleados que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
+                else
+                {
+                    teams = teams.Where(s => s.TeamName.Contains(searchString));
+                }
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
+                if (teams.Count() == 0)
+                {
+                    TempData["Error"] = "No Results!";
+                    return RedirectToAction("Index");
+
+                }
+
+            }
+            return View(teams);
         }
 
         // GET: Teams/Details/5
