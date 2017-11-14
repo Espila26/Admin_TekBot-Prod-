@@ -1,1 +1,64 @@
-﻿
+﻿@model Admin_TekBot_Prod_.Models.User
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = null;
+}
+
+@Styles.Render("~/Content/EstiloLogin.css")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Cuenta", "Login", new { @class = "form-horizontal" }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div class="login-page">
+                            <div class="form">
+                                <form class="login-form">
+                                    <img src="~/Images/Tek-Expert.png">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "input1", placeholder = "User Name", @name = "userName" })
+                                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.PasswordFor(m => m.User_Password, new { @class = "input1", @placeholder = "Password", @name = "password" })
+                                            @Html.ValidationMessageFor(m => m.User_Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Sign In" class="button1" />
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>
