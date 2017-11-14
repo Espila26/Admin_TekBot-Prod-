@@ -241,6 +241,8 @@
     <Content Include="Images\personal.png" />
     <Content Include="Images\puestos.png" />
     <Content Include="Images\reportes.png" />
+    <Content Include="Images\Tek-Expert%282%29.png" />
+    <Content Include="Images\Tek-Expert.png" />
     <Content Include="Images\usuarios.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
