@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label class="pMostrar">Filter by:</label>
                 <div class="">
-                    @Html.DropDownList("searchString", new SelectList(new List<Object> { { "Select" }, { "Acknowledged" }, { "Closed" }, { "Notified" }, { "Transfered" } }), new { onchange = "document.location.href = '/Users/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
+                    @Html.DropDownList("searchString", new SelectList(new List<Object> { { "Select" }, { "Acknowledged" }, { "Closed" }, { "Notified" }, { "Transfered" } }), new { onchange = "document.location.href = '/Cases/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
                 </div>
             </div>
             <button type="submit" id="Buscar" class="myButton">Search</button>
