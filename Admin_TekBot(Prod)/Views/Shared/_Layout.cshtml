@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var user = (Admin_TekBot_Prod_.Models.User)Session["user"];
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,6 +17,9 @@
     <link rel="stylesheet" href="~/Content/alertify.default.css" />
 </head>
 <body>
+    @if (user == null) {
+        <script> window.location.href = '@Url.Action("Login", "Login")'; </script>
+    } else {
         <div class="container">
             <header>
                 <span class="Home"></span>
@@ -29,16 +37,20 @@
             </header>
             <aside>
                 <table>
+                        @if ()
+                        {
+                            <tr class="TrOpciones">
+                                <td class="Seleccion"></td>
+                                <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Users")'"><spam class="Icono" id="Usuarios"></spam> Users</td>
+                            </tr>
 
-                        <tr class="TrOpciones">
-                            <td class="Seleccion"></td>
-                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Users")'"><spam class="Icono" id="Usuarios"></spam> Users</td>
-                        </tr>
-                 
-                        <tr class="TrOpciones">
-                            <td class="Seleccion"></td>
-                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Teams")'"><spam class="Icono" id="Departamentos"></spam>Teams</td>
-                        </tr>
+                            <tr class="TrOpciones">
+                                <td class="Seleccion"></td>
+                                <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Teams")'"><spam class="Icono" id="Departamentos"></spam>Teams</td>
+                            </tr>
+
+                        }
+                        
                   
                         <tr class="TrOpciones">
                             <td class="Seleccion"></td>
