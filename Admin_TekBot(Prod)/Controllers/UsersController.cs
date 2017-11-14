@@ -114,7 +114,8 @@ namespace Admin_TekBot_Prod_.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName", user.TeamId);
+            int id_view = Int32.Parse(id);
+            viewBagEdit(id_view);
             return View(user);
         }
 
@@ -234,5 +235,43 @@ namespace Admin_TekBot_Prod_.Controllers
                 return View();
             }
         }
+
+
+        //public void viewBagTeams()
+        //{
+        //    List<object> Temas = new List<Object>();
+        //    var Teams_Data = db.Teams;
+        //    foreach (var i in Teams_Data)
+        //    {
+        //        if (i.DEPARTAMENTOS.EMPRESAS.ESTADO.Equals("Activo"))
+        //        {
+        //            i.TeamName = i.TeamName;
+        //            Teams.Add(i);
+        //        }
+        //    }
+        //    ViewBag.PUESTO = new SelectList(PUESTOS, "PTS_ID", "NOMBRE");
+        //}
+
+
+        public void viewBagEdit(int id)
+        {
+            List<object> Teams = new List<Object>();
+            var Teams_Data = db.Teams;
+            int var_id = id;
+            var var_user = db.Users.Where(i => i.User_Number == var_id);
+            User user = (User)var_user.First();
+            Teams.Add(Teams_Data.Find(user.Team.TeamId));
+
+            foreach (var i in Teams_Data)
+            {
+                if (i.TeamId != id)
+                {
+                    i.TeamName = i.TeamName;
+                    Teams.Add(i);
+                }
+            }
+            ViewBag.Teams = new SelectList(Teams, "TeamId", "TeamName");
+        }
+
     }
 }

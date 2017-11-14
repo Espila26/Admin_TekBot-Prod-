@@ -11,10 +11,6 @@
 {
     @Html.AntiForgeryToken()
 
-    
-
-    <div class="form-horizontal">
-        <hr />
         
         <div class="form-horizontal">
             <h4>Case</h4>
@@ -84,87 +80,19 @@
                     @Html.EditorFor(model => model.Close_Date, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Close_Date, "", new { @class = "text-danger" })
                 </div>
-            </div><div class="form-horizontal">
-    <h4>Case</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.CaseId)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Engineer_name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Engineer_name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Engineer_name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Team, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Case_number, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Case_number, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Case_number, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Case_type, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Type", new SelectList(new List<Object> { { "Service Request" }, { "Probleme" }, { "Task" } }), "Please select a Type", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Case_type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Case_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Status", new SelectList(new List<Object> { { "Acknowledged" }, { "Closed" }, { "Notified" }, { "Transfered" } }), "Please select a Type", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Case_type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Case_severity, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Severity", new SelectList(new List<Object> { { "A" }, { "B" }, { "C" } }), "Please select a Type", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Case_type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Create_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Create_Date, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Create_Date, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Close_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Close_Date, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Close_Date, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            </div>
 
     <div class="form-group">
         <div>
             <input type="submit" value="Save" class="myButton" onClick="return Confirmar('Woudl you like to save the changes?', 'Save');" />
             <input id="guardar" class="btnInvisible" type="submit" value="Save" />
-            <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "Users")'" />
+            <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "Cases")'" />
         </div>
     </div>
 </div>
 
-
 }
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
