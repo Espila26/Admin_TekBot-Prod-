@@ -170,11 +170,11 @@ namespace Admin_TekBot_Prod_.Controllers
                 {
                     if (childChkbox.Count() == 1)
                     {
-                        return RedirectToAction("Details", "Users", new { id = childChkbox.First() });
+                        return RedirectToAction("Details", "Cases", new { id = childChkbox.First() });
                     }
                     else
                     {
-                        TempData["Error"] = "You can only select an user!";
+                        TempData["Error"] = "You can only select one case!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -183,11 +183,11 @@ namespace Admin_TekBot_Prod_.Controllers
 
                     if (childChkbox.Count() == 1)
                     {
-                        return RedirectToAction("Edit", "Users", new { id = childChkbox.First() });
+                        return RedirectToAction("Edit", "Cases", new { id = childChkbox.First() });
                     }
                     else
                     {
-                        TempData["Error"] = "You can only select an user!";
+                        TempData["Error"] = "You can only select one case!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -195,11 +195,11 @@ namespace Admin_TekBot_Prod_.Controllers
                 {
                     foreach (var i in childChkbox)
                     {
-                        var users = db.Users.Find(Int32.Parse(i));
-                        users.Users_Status = "Inactive";
+                        var cases = db.Cases.Find(Int32.Parse(i));
+                        cases.Case_Status = "Inactive";
                         db.SaveChanges();
                     }
-                    TempData["Success"] = "The user have been disable!";
+                    TempData["Success"] = "The case have been disable!";
                     return RedirectToAction("Index");
                 }
 
@@ -207,11 +207,11 @@ namespace Admin_TekBot_Prod_.Controllers
                 {
                     foreach (var i in childChkbox)
                     {
-                        var users = db.Users.Find(Int32.Parse(i));
-                        users.Users_Status = "Active";
+                        var cases = db.Cases.Find(Int32.Parse(i));
+                        cases.Case_Status = "Active";
                         db.SaveChanges();
                     }
-                    TempData["Success"] = "The user have been enable!";
+                    TempData["Success"] = "The case have been enable!";
                     return RedirectToAction("Index");
                 }
                 return View();
