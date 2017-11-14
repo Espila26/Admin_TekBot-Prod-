@@ -18,26 +18,26 @@ namespace HRM_DEV.Controllers
             return View();
         }
 
-        public ActionResult Cuenta(string NOMBRE_USUARIO, string CONTRASEÑA)
+        public ActionResult Cuenta(string mail, string User_Password)
         {
 
-            if (!String.IsNullOrEmpty(NOMBRE_USUARIO) && !String.IsNullOrEmpty(CONTRASEÑA))
+            if (!String.IsNullOrEmpty(mail) && !String.IsNullOrEmpty(User_Password))
             {
 
-                var users = from e in db.Users
-                               select e;
+                var users = from e in db.Users select e;
 
-                users = users.Where(s => (s.UserName.Equals(NOMBRE_USUARIO)));
+                users = users.Where(s => (s.mail.Equals(mail)));
 
                 if (users.Count() > 0)
                 {
-                    if (users.First().User_Password.Equals(CONTRASEÑA))
+                  if (users.First().User_Password.Equals(User_Password))
                     {
                         Session["user"] = users.First();
                         return RedirectToAction("Index", "Home");
                     }
                 }
             }
+            TempData["Error"] = "Failed Login";
             return RedirectToAction("Login", "Login");
         }
 
