@@ -24,20 +24,20 @@
             <header>
                 <span class="Home"></span>
                 <h1>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "h1Letra" })</h1>
-                <h2>Bienvenido(a): </h2>
+                <h2>Welcome: @user.UserName</h2>
                 <a class='boton' id="BotonConexus" onclick="return MostrarCuadroLogin()"></a>
                 <div id="triangulo"></div>
                 <div id="rectangulo">
                     <div id="conexus"></div>
-                    <a id="usuario" href="">Esteban</a>
+                    <a id="usuario" href="/Users/Details/@user.User_Number">@user.User_Number</a>
                 </div>
                 <div id="rectanguloBotones">
-                    <input id="cerrarSession" type="button" value="Cerrar Session" onclick="location.href='@Url.Action("CerrarSession", "Login")'" class="buttonLogin" />
+                    <input id="cerrarSession" type="button" value="Exit" onclick="location.href='@Url.Action("CerrarSession", "Login")'" class="buttonLogin" />
                 </div>
             </header>
             <aside>
                 <table>
-                        @if ()
+                        @if ((user.Users_positions.Equals("Manager") || user.Users_positions.Equals("SME")))
                         {
                             <tr class="TrOpciones">
                                 <td class="Seleccion"></td>
@@ -51,12 +51,13 @@
 
                         }
                         
-                  
-                        <tr class="TrOpciones">
-                            <td class="Seleccion"></td>
-                            <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Cases")'"><spam class="Icono" id="Acciones"></spam> Cases</td>
-                        </tr>
-                    
+                      @if (user.Users_positions.Equals("Manager") || user.Users_positions.Equals("SME") || user.Users_positions.Equals("QM/Support Engineer"))
+                      {
+                            <tr class="TrOpciones">
+                                <td class="Seleccion"></td>
+                                <td class="TDOpciones" onclick="location.href='@Url.Action("Index", "Cases")'"><spam class="Icono" id="Acciones"></spam> Cases</td>
+                            </tr>
+                      }
                 </table>
                 @*<img src="~/Imagenes/conexus3.png">*@
             </aside>
