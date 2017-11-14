@@ -11,27 +11,47 @@ namespace Admin_TekBot_Prod_.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Case
     {
         public int CaseId { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Case Owner"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string Engineer_name { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Team")]
         public string Team { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("User Name"), StringLength(15, ErrorMessage = "The string is too long."), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Invalid Format (Please type just number)")]
         public string Case_number { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Type")]
         public string Case_type { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Status")]
         public string Case_Status { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Complete this Field"), DisplayName("Severity")]
         public string Case_severity { get; set; }
+        [DisplayName("Full Date")]
         public string Full_Date { get; set; }
+        [DisplayName("Day Number")]
         public Nullable<int> Day_Number { get; set; }
+        [DisplayName("Month Number")]
         public Nullable<int> Month_Number { get; set; }
+        [DisplayName("Week Year")]
         public Nullable<int> Week_Year { get; set; }
+        [DisplayName("Year Number")]
         public Nullable<int> Year_Number { get; set; }
+        [DisplayName("Day Name"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string Day_Name { get; set; }
+        [DisplayName("Day Name"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string Month_Name { get; set; }
+        [DisplayName("Comment"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string Comments { get; set; }
+        [DisplayName("Case Owner"), StringLength(55, ErrorMessage = "The string is too long."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Invalid Format.")]
         public string AssignedBy { get; set; }
+        [DisplayName("Full Date Close"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string Full_Date_Close { get; set; }
+        [DisplayName("Create Date"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Create_Date { get; set; }
+        [DisplayName("Close Date"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Close_Date { get; set; }
     }
 }

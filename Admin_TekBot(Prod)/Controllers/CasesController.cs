@@ -15,9 +15,41 @@ namespace Admin_TekBot_Prod_.Controllers
         private BotKnowledgeDB_Entities db = new BotKnowledgeDB_Entities();
 
         // GET: Cases
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Cases.ToList());
+            var Cases = from e in db.Cases select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //Muestra los empleados por el estado que el usuario definió previamente
+                if (searchString.Equals("Closed") || searchString.Equals("Notified") || searchString.Equals("Acknowledged") || searchString.Equals("Transfered"))
+                {
+                    Cases = Cases.Where(s => s.Case_Status.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Select"))
+                {
+                    TempData["Error"] = "Please Select the Filter!";
+                    return RedirectToAction("Index");
+                }
+
+                //Muestra los empleados que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
+                else
+                {
+                    Cases = Cases.Where(s => s.Case_number.Contains(searchString) || s.Engineer_name.Contains(searchString));
+                }
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
+                if (Cases.Count() == 0)
+                {
+                    TempData["Error"] = "No Results!";
+                    return RedirectToAction("Index");
+
+                }
+
+            }
+
+            return View(Cases);
         }
 
         // GET: Cases/Details/5
@@ -123,5 +155,68 @@ namespace Admin_TekBot_Prod_.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "Please Select an User!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Details"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "Users", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an user!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Edit"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "Users", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "You can only select an user!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Inactive"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Inactive";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been disable!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Active"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var users = db.Users.Find(Int32.Parse(i));
+                        users.Users_Status = "Active";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "The user have been enable!";
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+        }
+
     }
 }

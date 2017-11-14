@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Admin_TekBot_Prod_.Models.User>
+﻿1@model IEnumerable<Admin_TekBot_Prod_.Models.User>
 
 @{
     ViewBag.Title = "Index";
@@ -153,7 +153,6 @@
               header: ""),
               grid.Column("UserName", "User Name", canSort: true),
               grid.Column("mail", "User Mail", canSort: false)
-              //grid.Column("Teams.TeamName", "Team", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()
@@ -195,8 +194,4 @@
         }
     </script>
 }
-
-
-
-
 </table>
