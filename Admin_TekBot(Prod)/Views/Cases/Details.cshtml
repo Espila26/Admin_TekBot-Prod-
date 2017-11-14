@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "Details";
 }
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloDetails.css")
 
-<h2>Details</h2>
+<div id="TitleDetails">
+    <p>Case Details</p>
+</div>
 
 <div>
-    <h4>Case</h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+    <button class="accordion">Case Information</button>
+    <div class="panel">
         <dt>
             @Html.DisplayNameFor(model => model.Engineer_name)
         </dt>
@@ -153,10 +158,24 @@
         <dd>
             @Html.DisplayFor(model => model.Close_Date)
         </dd>
+    </div>
 
-    </dl>
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "CaseS", new { id = Model.})'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPLEADOS")'" />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CaseId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section Scripts{
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
+}

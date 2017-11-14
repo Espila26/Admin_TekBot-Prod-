@@ -134,7 +134,7 @@
         }
 </style>
 <div class="contenedorGrid">
-    @using (Html.BeginForm("formAction", "Users"))
+    @using (Html.BeginForm("formAction", "Cases"))
     {
         var grid = new WebGrid(source: Model,
         rowsPerPage: 6, ajaxUpdateCallback: "addCheck");
